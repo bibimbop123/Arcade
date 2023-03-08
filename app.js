@@ -4,10 +4,14 @@ const gameState = {
     [null, null, null],
     [null, null, null],
   ],
+  players: ["x", "o"],
+  currentPlayer: [null],
+  gameStatus: [isPlaying()],
 };
+gameState.currentPlayer = gameState.players[0];
+
 const board = document.querySelector("#board");
 // const cell = gameState.board[i][j];
-// Maybe a current Player?
 const form1 = document.querySelector("#player1form");
 const form2 = document.querySelector("#player2form");
 
@@ -17,26 +21,24 @@ const player2 = document.querySelector("#player2-name");
 form1.addEventListener("submit", (event) => {
   event.preventDefault();
   const player1 = event.target.value;
-  const newPlayer1 = player1;
 });
 
 form2.addEventListener("submit", (event) => {
   event.preventDefault();
   const player2 = event.target.value;
-  const newPlayer2 = player2;
 });
 
 // A game status?? 'isPlaying' or 'over'
 let playerStatus = document.querySelector("#playerStatus");
 
-let currentPlayer = newPlayer1;
+let currentPlayer = player1;
 function switchPlayer() {}
-if (currentPlayer === newPlayer1) {
-  currentPlayer = newPlayer2;
-  playerStatus.innerText = newPlayer2;
+if ((currentPlayer = player1)) {
+  currentPlayer = player2;
+  playerStatus.innerText = player2;
 } else {
-  currentPlayer = newPlayer1;
-  playerStatus.innerText = newPlayer1;
+  currentPlayer = player1;
+  playerStatus.innerText = player1;
 }
 
 let gameStatus = document.querySelector("#gameStatus");
@@ -47,6 +49,7 @@ function isPlaying() {
   } else {
     let statusMode = "over";
   }
+  gameState.gameStatus.push(statusMode);
 }
 
 function renderStatus() {
@@ -56,11 +59,6 @@ function renderStatus() {
 //i know i need to use innertext to refer to the input of currentplayer forms
 
 // Any other data your game logic depends on?
-
-const X_input = "X";
-const O_input = "O";
-Player1 = X_input;
-Player2 = O_input;
 //turns
 //scoreboard that keeps track of score tally
 //if player 1 wins +1 to his scoreboard, else if player 2 wins +1 to his scoreboard
