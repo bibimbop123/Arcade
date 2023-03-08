@@ -45,11 +45,11 @@ let gameStatus = document.querySelector("#gameStatus");
 
 function isPlaying() {
   if (true) {
-    let statusMode = "isPlaying";
+    let gameStatus = "isPlaying";
   } else {
-    let statusMode = "over";
+    let gameStatus = "over";
   }
-  gameState.gameStatus.push(statusMode);
+  gameState.gameStatus;
 }
 
 function renderStatus() {
