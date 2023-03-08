@@ -20,13 +20,16 @@
 .board {
   padding: 25px;
   display: grid;
-  grid-template-columns: 200px 200px 200px;
+  grid-template-columns: 50px 50px 50px;
   text-align: center;
   justify-content: center;
 }
 
 .cell {
   border: 2px solid black;
+  height: 50px;
+  width: 50px;
+  background-color: aqua;
 }
 .cell:nth-child(n + 7) {
   border-bottom: none;
