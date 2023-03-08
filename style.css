@@ -1,0 +1,38 @@
+#header {
+  text-align: center;
+}
+#player1form {
+  display: flex;
+  justify-content: center;
+}
+#player2form {
+  display: flex;
+  justify-content: center;
+}
+.board {
+  padding: 25px;
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  text-align: center;
+  justify-content: center;
+}
+
+.cell {
+  border: 2px solid black;
+}
+.cell:nth-child(n + 7) {
+  border-bottom: none;
+}
+.cell:nth-child(-n + 3) {
+  border-top: none;
+}
+.cell:nth-child(3n) {
+  border-right: none;
+}
+.cell:nth-child(3n-2) {
+  border-left: none;
+}
+
+#scoreboard {
+  text-align: center;
+}
