@@ -9,6 +9,14 @@
   display: flex;
   justify-content: center;
 }
+#playerStatus {
+  display: flex;
+  justify-content: center;
+}
+#gameStatus {
+  display: flex;
+  justify-content: center;
+}
 .board {
   padding: 25px;
   display: grid;

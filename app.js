@@ -5,13 +5,34 @@ const gameState = {
     [null, null, null],
   ],
   players: ["x", "o"],
-  currentPlayer: [null],
-  gameStatus: [isPlaying()],
+  playerNames: [[], []],
+  currentPlayerIdx: 0,
+  gameStatus: "isPlaying",
 };
 
-gameState.currentPlayer = gameState.players[0];
+const board = document.querySelector(".board");
 
-const board = document.querySelector("#board");
+board.addEventListener("click", (e) => {
+
+  // WHat are we trying to do when we click on the board???
+  //change null to x or o
+
+  console.log(e.target.id);
+  // figure out how to use the id to set the gameState.board's correct positon to be the current player
+  gameState.board[i][j] = gameState.players[0];
+
+  // check for win
+
+  // switch the current player
+  function switchPlayer() {
+    if (gameState.board[i][j]=gameState.players[0]) {
+      gameState.board[i][j]=gameState.players[1]
+    } else if (gameState.board[i][j]=gameState.players[1]){
+      gameState.board[i][j]=gameState.players[0]
+    }
+  }
+  // change the currentPlayer Idx
+});
 // const cell = gameState.board[i][j];
 const form1 = document.querySelector("#player1form");
 const form2 = document.querySelector("#player2form");
@@ -21,41 +42,24 @@ const player2 = document.querySelector("#player2-name");
 
 form1.addEventListener("submit", (event) => {
   event.preventDefault();
-  const player1 = event.target.value;
+  gameState.playerNames[0].push(event.target[0].value);
+  // push this players name into postiton 0 of the payerName array
 });
 
 form2.addEventListener("submit", (event) => {
   event.preventDefault();
-  const player2 = event.target.value;
+  gameState.playerNames[1].push(event.target[0].value);
+  // push this players name into postiton 1 of the payerName array
 });
 
 // A game status?? 'isPlaying' or 'over'
 let playerStatus = document.querySelector("#playerStatus");
-let player1 = gameState.currentPlayer;
-let currentPlayer = player1;
-function switchPlayer() {}
-if ((currentPlayer = player1)) {
-  currentPlayer = player2;
-  playerStatus.innerText = player2;
-} else {
-  currentPlayer = player1;
-  playerStatus.innerText = player1;
-}
 
 let gameStatus = document.querySelector("#gameStatus");
 
-function isPlaying() {
-  if (true) {
-    let gameStatus = "isPlaying";
-  } else {
-    let gameStatus = "over";
-  }
-  gameState.gameStatus.push.gameStatus;
-}
-
 function renderStatus() {
   const playerStatus = document.createElement("ul");
-  playerStatus.appendChild(currentPlayer);
+  playerStatus.append(playerNames);
 }
 //i know i need to use innertext to refer to the input of currentplayer forms
 
@@ -64,18 +68,14 @@ function renderStatus() {
 //scoreboard that keeps track of score tally
 //if player 1 wins +1 to his scoreboard, else if player 2 wins +1 to his scoreboard
 
-board.addEventListener("click", function (event) {
-  // Figure out how to get the coordinates off event object (e.target.value)
-  // Use those coordinates to reference indexes in our gameState.board
-  // Set the position in our board to the current player
-  gameState.board.forEach((cell) =>
-    cell.addEventListener("click", cellClicked)
-  );
-});
-function renderStatus() {}
-
 function renderGame() {
   // Call this function after you've changed your state values
+  for(let i = 0, i < gameState.board[i].length; i++){
+    let rowEl = gameState.board[i]
+    for(let j =0, i < gameState.board[j].length;j++){
+      let columnEl = gameState.board[j]
+    }
+  }
   // Make references to DOM elements, and set the innerText,
   // or innerHTML to reflect our gameState.board
 }
@@ -90,5 +90,3 @@ function checkWin() {
   // checkColumn()
   // checkDiagonals()
 }
-console.log(currentPlayer1);
-console.log(currentPlayer2);
