@@ -8,6 +8,7 @@ const gameState = {
   currentPlayer: [null],
   gameStatus: [isPlaying()],
 };
+
 gameState.currentPlayer = gameState.players[0];
 
 const board = document.querySelector("#board");
@@ -30,7 +31,7 @@ form2.addEventListener("submit", (event) => {
 
 // A game status?? 'isPlaying' or 'over'
 let playerStatus = document.querySelector("#playerStatus");
-
+let player1 = gameState.currentPlayer;
 let currentPlayer = player1;
 function switchPlayer() {}
 if ((currentPlayer = player1)) {
@@ -49,7 +50,7 @@ function isPlaying() {
   } else {
     let gameStatus = "over";
   }
-  gameState.gameStatus;
+  gameState.gameStatus.push.gameStatus;
 }
 
 function renderStatus() {
@@ -79,9 +80,9 @@ function renderGame() {
   // or innerHTML to reflect our gameState.board
 }
 
-function checkRow() {}
-function checkColumn(grid, x, y) {}
-function checkDiagonals(grid, x, y) {}
+function checkRow(grid, i, j) {}
+function checkColumn(grid, i, j) {}
+function checkDiagonals(grid, i, j) {}
 
 function checkWin() {
   // Maybe this calls other helper functions?
