@@ -18,11 +18,11 @@ board.addEventListener("click", (event) => {
   const i = Number(coordinates[0]);
   const j = Number(coordinates[1]);
 
-  gameState.board[i][j] = "x";
   //   // WHat are we trying to do when we click on the board???
   //   //change null to x or
   board.innerHTML = null;
   renderGame();
+  switchPlayer();
   //   // figure out how to use the id to set the gameState.board's correct positon to be the current player
   // gameState.board[i][j] = gameState.players[0];
   //   // check for win
@@ -47,12 +47,14 @@ const player2 = document.querySelector("#player2-name");
 form1.addEventListener("submit", (event) => {
   event.preventDefault();
   gameState.playerNames[0].push(event.target[0].value);
+  playerStatus.append.playerNames[0];
   // push this players name into postiton 0 of the payerName array
 });
 
 form2.addEventListener("submit", (event) => {
   event.preventDefault();
   gameState.playerNames[1].push(event.target[0].value);
+  playerStatus.append.playerName[1];
   // push this players name into postiton 1 of the payerName array
 });
 
@@ -61,9 +63,17 @@ let playerStatus = document.querySelector("#playerStatus");
 
 let gameStatus = document.querySelector("#gameStatus");
 
+function switchPlayer() {
+  let currentIdx = gameState.players.indexOf(gameState.currentPlayerIdx);
+  let nextIdx = (currentIdx + 1) % gameState.players.length;
+  gameState.currentPlayerIdx = gameState.players[nextIdx];
+  console.log(gameState.currentPlayerIdx);
+  gameState.board.appendChild(gameState.currentPlayerIdx);
+}
+
 function renderStatus() {
   const playerStatus = document.createElement("ul");
-  playerStatus.append();
+  playerStatus.append(playerNames[0]);
 }
 //i know i need to use innertext to refer to the input of currentplayer forms
 
