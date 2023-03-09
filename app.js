@@ -17,9 +17,9 @@ function buttonClick(x, y, selector) {
 
   if (result != null)
     document.querySelector("#gameStatus").innerHTML = "Over - " + result;
-
   document.querySelector("#" + selector).innerHTML = game[y][x];
 }
+
 function checkWinOrTie() {
   // Top Horizontal
   if (game[0][0] == game[0][1] && game[0][1] == game[0][2] && game[0][0] != "")
@@ -45,14 +45,13 @@ function checkWinOrTie() {
   //left diagonal
   if (game[0][0] == game[1][1] && game[1][1] == game[2][2] && game[0][0] != "")
     return game[0][0];
-  //tie
-
-  // STUB - Other 5 Options
-
-  // STUB - Check for tie
-
-  return null; // Means game is still going
+  else {
+    return (document.querySelector("#gameStatus").innerHTML = "Tie");
+  }
 }
+
+// STUB - Other 5 Options
+
 //   // switch the current player
 //   // change the currentPlayer Idx
 // const cell = gameState.board[i][j];
