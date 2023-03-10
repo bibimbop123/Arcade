@@ -12,6 +12,9 @@
 #playerStatus {
   display: flex;
   justify-content: center;
+  vertical-align: middle;
+  text-align: center;
+  padding: 25px;
 }
 #gameStatus {
   display: flex;
@@ -20,16 +23,17 @@
 .board {
   padding: 25px;
   display: grid;
-  grid-template-columns: 50px 50px 50px;
+  grid-template-columns: 100px 100px 100px;
   text-align: center;
   justify-content: center;
 }
 
 .cell {
   border: 2px solid black;
-  height: 50px;
-  width: 50px;
-  background-color: aqua;
+  height: 100px;
+  width: 100px;
+  background-color: rgb(223, 205, 42);
+  line-height: 100px;
 }
 .cell:nth-child(n + 7) {
   border-bottom: none;

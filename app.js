@@ -3,10 +3,19 @@ let game = [
   ["", "", ""],
   ["", "", ""],
 ];
-let playerNames = [[], []];
+let playerNames = ["player1", "player2"];
+let playerStatus = document.querySelector("#playerStatus");
+playerStatus.innerText = playerNames[0];
 
 let isX = true;
 
+function switchPlayers() {
+  if (isX) {
+    playerStatus.innerText = playerNames[0] + `'s turn`;
+  } else {
+    playerStatus.innerText = playerNames[1] + `'s turn`;
+  }
+}
 function buttonClick(x, y, selector) {
   if (game[y][x] != "") return;
 
@@ -16,8 +25,10 @@ function buttonClick(x, y, selector) {
   let result = checkWinOrTie();
 
   if (result != null)
-    document.querySelector("#gameStatus").innerHTML = "Over - " + result;
+    document.querySelector("#gameStatus").innerHTML =
+      "winning player is - " + result;
   document.querySelector("#" + selector).innerHTML = game[y][x];
+  switchPlayers();
 }
 
 function checkWinOrTie() {
@@ -63,15 +74,17 @@ const player2 = document.querySelector("#player2-name");
 
 form1.addEventListener("submit", (event) => {
   event.preventDefault();
-  playerNames[0].push(event.target[0].value);
-  playerStatus.append.playerNames[0];
+  playerNames[0] = event.target[0].value;
+  playerNames[1] = event.target[1].value;
+  playerStatus.innerText = `${playerNames[0]}'s turn`;
+  // document.querySelector("#playerStatus").append(playerNames[1]);
 });
 
-form2.addEventListener("submit", (event) => {
-  event.preventDefault();
-  playerNames[1].push(event.target[0].value);
-  playerStatus.append.playerName[1];
-});
+// form2.addEventListener("submit", (event) => {
+//   event.preventDefault();
+//   playerNames[1]=(event.target[1].value);
+//   document.querySelector("#playerStatus").append.playerName[1];
+// });
 
 // A game status?? 'isPlaying' or 'over'
 // let playerStatus = document.querySelector("#playerStatus");
