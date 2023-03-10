@@ -3,10 +3,21 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-body{
+body {
+  display:flex;
+  flex-direction: column;
   justify-content: center;
+  align-items:center;
+
 }
+h1 {
+  display:flex;
+  flex-direction: column;
+  text-align:center;
+  justify-content: center;
+
+}
+
 .board {
   display: grid;
   height: 400px;
