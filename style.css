@@ -1,3 +1,6 @@
+body {
+  background-color: rgb(230, 207, 207);
+}
 #header {
   text-align: center;
 }
@@ -26,6 +29,7 @@
   grid-template-columns: 100px 100px 100px;
   text-align: center;
   justify-content: center;
+  border: 2px solid black;
 }
 
 .cell {

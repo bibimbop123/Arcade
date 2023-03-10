@@ -1,3 +1,6 @@
+//have to create a reset button that resets the tallys to zero
+//have to create a scoreboard that tallys the win
+// have to get it to say the players name when they win
 let game = [
   ["", "", ""],
   ["", "", ""],
@@ -8,6 +11,17 @@ let playerStatus = document.querySelector("#playerStatus");
 playerStatus.innerText = playerNames[0];
 
 let isX = true;
+
+function player() {
+  for (i = 0; i < playerNames.length; i++) {
+    let player = playerNames[i];
+    if (isX) {
+      return (player = playerNames[0]);
+    } else {
+      return (player = playerNames[1]);
+    }
+  }
+}
 
 function switchPlayers() {
   if (isX) {
@@ -26,7 +40,7 @@ function buttonClick(x, y, selector) {
 
   if (result != null)
     document.querySelector("#gameStatus").innerHTML =
-      "winning player is - " + result;
+      "winning player is - " + checkWinOrTie() + " " + player();
   document.querySelector("#" + selector).innerHTML = game[y][x];
   switchPlayers();
 }
