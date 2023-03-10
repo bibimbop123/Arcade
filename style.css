@@ -1,35 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  background-color: rgb(230, 207, 207);
-}
-#header {
-  text-align: center;
-}
-#player1form {
+  height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
-#player2form {
+
+#board {
   display: flex;
-  justify-content: center;
-}
-#playerStatus {
-  display: flex;
-  justify-content: center;
-  vertical-align: middle;
-  text-align: center;
-  padding: 25px;
-}
-#gameStatus {
-  display: flex;
-  justify-content: center;
-}
-.board {
-  padding: 25px;
-  display: grid;
-  grid-template-columns: 100px 100px 100px;
-  text-align: center;
-  justify-content: center;
-  border: 2px solid black;
+  flex-direction: column;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  background-color: lavender;
+  height: 500px;
+  width: 500px;
 }
 
 .cell {
@@ -39,7 +28,7 @@ body {
   background-color: rgb(223, 205, 42);
   line-height: 100px;
 }
-.cell:nth-child(n + 7) {
+/* .cell:nth-child(n + 7) {
   border-bottom: none;
 }
 .cell:nth-child(-n + 3) {
@@ -50,7 +39,7 @@ body {
 }
 .cell:nth-child(3n-2) {
   border-left: none;
-}
+} */
 
 #scoreboard {
   text-align: center;
