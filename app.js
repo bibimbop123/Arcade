@@ -40,7 +40,7 @@ function buttonClick(x, y, selector) {
 
   if (result != null)
     document.querySelector("#gameStatus").innerHTML =
-      "winning player is - " + checkWinOrTie() + " " + player();
+      "winning player is - " + checkWinOrTie();
   document.querySelector("#" + selector).innerHTML = game[y][x];
   switchPlayers();
 }
@@ -48,28 +48,28 @@ function buttonClick(x, y, selector) {
 function checkWinOrTie() {
   // Top Horizontal
   if (game[0][0] == game[0][1] && game[0][1] == game[0][2] && game[0][0] != "")
-    return game[0][0];
+    return game[0][0] + " " + player();
   //middle Horizontal
   if (game[0][1] == game[1][1] && game[1][1] == game[2][1] && game[0][1] != "")
-    return game[0][1];
+    return game[0][1] + " " + player();
   //bottom horizontal
   if (game[0][2] == game[1][2] && game[1][2] == game[2][2] && game[0][2] != "")
-    return game[0][2];
+    return game[0][2] + " " + player();
   //left vertical
   if (game[0][0] == game[1][0] && game[1][0] == game[2][0] && game[0][0] != "")
-    return game[0][0];
+    return game[0][0] + " " + player();
   // middle vertical
   if (game[1][0] == game[1][1] && game[1][1] == game[1][2] && game[1][0] != "")
-    return game[1][0];
+    return game[1][0] + " " + player();
   //right vertical
   if (game[2][0] == game[2][1] && game[2][1] == game[2][2] && game[2][0] != "")
-    return game[2][0];
+    return game[2][0] + " " + player();
   //right diagonal
   if (game[2][0] == game[1][1] && game[1][1] == game[0][2] && game[2][0] != "")
-    return game[2][0];
+    return game[2][0] + " " + player();
   //left diagonal
   if (game[0][0] == game[1][1] && game[1][1] == game[2][2] && game[0][0] != "")
-    return game[0][0];
+    return game[0][0] + " " + player();
   else {
     return (document.querySelector("#gameStatus").innerHTML = "Tie");
   }
