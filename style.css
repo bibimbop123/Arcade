@@ -4,6 +4,9 @@
   box-sizing: border-box;
 }
 
+body{
+  justify-content: center;
+}
 .board {
   display: grid;
   height: 400px;
@@ -11,14 +14,16 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   background-color: blue;
+  
 }
 
 .cell {
   border: 2px solid black;
-}
-  /* text-align: center;
-  justify-content: center;
-}
+  text-align: center;
+  vertical-align: center;
+  line-height:133px;
+
+} 
 
 .cell:nth-child(n + 7) {
   border-bottom: none;
