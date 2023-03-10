@@ -81,7 +81,6 @@ function checkWinOrTie() {
 //   // change the currentPlayer Idx
 // const cell = gameState.board[i][j];
 const form1 = document.querySelector("#player1form");
-const form2 = document.querySelector("#player2form");
 
 const player1 = document.querySelector("#player1-name");
 const player2 = document.querySelector("#player2-name");
@@ -93,12 +92,6 @@ form1.addEventListener("submit", (event) => {
   playerStatus.innerText = `${playerNames[0]}'s turn`;
   // document.querySelector("#playerStatus").append(playerNames[1]);
 });
-
-// form2.addEventListener("submit", (event) => {
-//   event.preventDefault();
-//   playerNames[1]=(event.target[1].value);
-//   document.querySelector("#playerStatus").append.playerName[1];
-// });
 
 // A game status?? 'isPlaying' or 'over'
 // let playerStatus = document.querySelector("#playerStatus");
