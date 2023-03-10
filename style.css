@@ -11,22 +11,17 @@ body {
   align-items: center;
 }
 
-#board {
-  display: flex;
-  flex-direction: column;
+.board {
+  display: grid;
+  height: 400px;
+  width: 400px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  background-color: lavender;
-  height: 500px;
-  width: 500px;
+  border: 2px solid black;
 }
 
 .cell {
   border: 2px solid black;
-  height: 100px;
-  width: 100px;
-  background-color: rgb(223, 205, 42);
-  line-height: 100px;
 }
 /* .cell:nth-child(n + 7) {
   border-bottom: none;
