@@ -7,7 +7,12 @@ const gameState = {
     [null, null, null],
   ],
   currentPlayer: "x",
+  playerNames: [[], []],
 };
+const form1 = document.querySelector("#player1form");
+const player1 = document.querySelector("#player1-name");
+const player2 = document.querySelector("#player2-name");
+const playerStatus = document.querySelector("#playerStatus");
 for (let i = 0; i < 3; i++) {
   for (let j = 0; j < 3; j++) {
     const cell = document.createElement("div");
@@ -16,14 +21,19 @@ for (let i = 0; i < 3; i++) {
     board.append(cell);
   }
 }
+
 board.addEventListener("click", (e) => {
   console.log(e.target.id);
   const row = e.target.id[0];
   const col = e.target.id[2];
   gameState.board[row][col] = gameState.currentPlayer;
   console.log("Game State: ", gameState);
+
   renderboard();
   switchPlayer();
+});
+form1.addEventListener("submit", (event) => {
+  event.preventDefault();
 });
 function renderboard() {
   for (let i = 0; i < 3; i++) {

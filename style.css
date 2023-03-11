@@ -4,37 +4,37 @@
   box-sizing: border-box;
 }
 body {
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items:center;
-
+  align-items: center;
 }
 h1 {
-  display:flex;
+  display: flex;
   flex-direction: column;
-  text-align:center;
+  text-align: center;
   justify-content: center;
-
 }
 
 .board {
   display: grid;
   height: 400px;
-  width: 400px; 
+  width: 400px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  background-color: blue;
-  
+  background-color: light;
+  padding: 25px;
+  text-align: center;
+  justify-content: center;
+  border: 2px solid black;
 }
 
 .cell {
   border: 2px solid black;
   text-align: center;
   vertical-align: center;
-  line-height:133px;
-
-} 
+  background-color: #f39237;
+}
 
 .cell:nth-child(n + 7) {
   border-bottom: none;
@@ -50,5 +50,31 @@ h1 {
 }
 
 #scoreboard {
-  text-align: center; */
+  text-align: center;
+}
+
+body {
+  background-color: #40bcd8;
+}
+#header {
+  text-align: center;
+}
+#player1form {
+  display: flex;
+  justify-content: center;
+}
+#player2form {
+  display: flex;
+  justify-content: center;
+}
+#playerStatus {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  text-align: center;
+  padding: 25px;
+}
+#gameStatus {
+  display: flex;
+  justify-content: center;
 }
