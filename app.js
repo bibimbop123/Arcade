@@ -1,5 +1,6 @@
 const board = document.querySelector(".board");
-
+const player1 = document.querySelector("#player1-name");
+const player2 = document.querySelector("#player2-name");
 const gameState = {
   board: [
     [null, null, null],
@@ -7,12 +8,11 @@ const gameState = {
     [null, null, null],
   ],
   currentPlayer: "x",
-  playerNames: [[], []],
+  playerNames: [[player1], [player2]],
 };
 const form1 = document.querySelector("#player1form");
-const player1 = document.querySelector("#player1-name");
-const player2 = document.querySelector("#player2-name");
 const playerStatus = document.querySelector("#playerStatus");
+const gameStatus = document.querySelector("#gameStatus");
 for (let i = 0; i < 3; i++) {
   for (let j = 0; j < 3; j++) {
     const cell = document.createElement("div");
@@ -31,10 +31,16 @@ board.addEventListener("click", (e) => {
 
   renderboard();
   switchPlayer();
+  playerStatus.innerText = gameState.currentPlayer + "'s turn";
+  gameStatus.innerText = "active";
 });
+
 form1.addEventListener("submit", (event) => {
   event.preventDefault();
+  gameState.playerNames[0] = event.target[0].value;
+  gameState.playerNames[1] = event.target[1].value;
 });
+
 function renderboard() {
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
@@ -46,10 +52,37 @@ function renderboard() {
 function switchPlayer() {
   if (gameState.currentPlayer === "x") {
     gameState.currentPlayer = "o";
+    if ((gameState.currentPlayer = "o")) {
+      playerStatus.innerText = gameState.playerNames[1];
+    }
   } else {
     gameState.currentPlayer = "x";
+    if ((gameState.currentPlayer = "x")) {
+      playerStatus.innerText = gameState.playerNames[0];
+    }
   }
 }
+function displayCurrentTime() {
+  currentTimeDisplay.innerText = new Date();
+}
+setInterval(displayCurrentTime, 1000);
+const currentTimeDisplay = document.querySelector("#current-time");
+
+// function getRow(){
+// for(let i =0; i<gameState.board.length;i++){
+//   let rowEl= gameState.board[i]
+//   for(j=0;j<rowEl.length;i++){
+//     let colEl=rowEl[j]
+
+//   }
+// }
+// }
+// function getCol(){
+
+// }
+// function checkWin(){
+
+// }
 // const board = document.querySelector(".board");
 // for (let i = 0; i < 3; i++) {
 //   for (let j = 0; j < 3; j++) {
@@ -97,8 +130,13 @@ function switchPlayer() {
 // }
 
 // function checkWin() {
-//   // Maybe this calls other helper functions?
-//   // checkRow()
-//   // checkColumn()
-//   // checkDiagonals()
+// Maybe this calls other helper functions?
+// checkRow()
+// checkColumn()
+// checkDiagonals()
 // }
+
+//got to get form to submit player names into player turns on player status
+//got to get game status to display who won at the end of the game
+//check win function
+//scoreboard function tally wins
