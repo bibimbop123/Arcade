@@ -8,7 +8,7 @@ const gameState = {
     [null, null, null],
   ],
   currentPlayer: "x",
-  playerNames: [[player1], [player2]],
+  playerNames: ["Player 1", "Player 2"],
 };
 const form1 = document.querySelector("#player1form");
 const playerStatus = document.querySelector("#playerStatus");
@@ -31,8 +31,11 @@ board.addEventListener("click", (e) => {
 
   renderboard();
   switchPlayer();
-  playerStatus.innerText = gameState.currentPlayer + "'s turn";
-  gameStatus.innerText = "active";
+  playerStatus.innerText =
+    gameState.currentPlayer === "x"
+      ? gameState.playerNames[0] + "'s turn"
+      : gameState.playerNames[1] + "'s turn";
+  gameStatus.innerText = "Active";
 });
 
 form1.addEventListener("submit", (event) => {
@@ -52,14 +55,8 @@ function renderboard() {
 function switchPlayer() {
   if (gameState.currentPlayer === "x") {
     gameState.currentPlayer = "o";
-    if ((gameState.currentPlayer = "o")) {
-      playerStatus.innerText = gameState.playerNames[1];
-    }
-  } else {
+  } else if (gameState.currentPlayer === "o") {
     gameState.currentPlayer = "x";
-    if ((gameState.currentPlayer = "x")) {
-      playerStatus.innerText = gameState.playerNames[0];
-    }
   }
 }
 function displayCurrentTime() {
@@ -68,19 +65,20 @@ function displayCurrentTime() {
 setInterval(displayCurrentTime, 1000);
 const currentTimeDisplay = document.querySelector("#current-time");
 
-// function getRow(){
-// for(let i =0; i<gameState.board.length;i++){
-//   let rowEl= gameState.board[i]
-//   for(j=0;j<rowEl.length;i++){
-//     let colEl=rowEl[j]
 
-//   }
-// }
-// }
-// function getCol(){
+function getRow(){
+for(let i =0; i<gameState.board.length;i++){
+  let rowEl= gameState.board[i]
+  for(j=0;j<rowEl.length;i++){
+    let colEl=rowEl[j]
 
-// }
-// function checkWin(){
+  }
+}
+}
+function getCol(){
+
+}
+function checkWin(){
 
 // }
 // const board = document.querySelector(".board");
