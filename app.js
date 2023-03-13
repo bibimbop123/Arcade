@@ -9,6 +9,7 @@ const gameState = {
   ],
   currentPlayer: "x",
   playerNames: ["Player 1", "Player 2"],
+  currentPlayeridx: 0,
 };
 const form1 = document.querySelector("#player1form");
 const playerStatus = document.querySelector("#playerStatus");
@@ -36,6 +37,7 @@ board.addEventListener("click", (e) => {
       ? gameState.playerNames[0] + "'s turn"
       : gameState.playerNames[1] + "'s turn";
   gameStatus.innerText = "Active";
+  CheckWin();
 });
 
 form1.addEventListener("submit", (event) => {
@@ -58,6 +60,8 @@ function switchPlayer() {
   } else if (gameState.currentPlayer === "o") {
     gameState.currentPlayer = "x";
   }
+  gameState.currentPlayeridx =
+    (gameState.currentPlayeridx + 1) % gameState.playerNames.length;
 }
 function displayCurrentTime() {
   currentTimeDisplay.innerText = new Date();
@@ -65,20 +69,57 @@ function displayCurrentTime() {
 setInterval(displayCurrentTime, 1000);
 const currentTimeDisplay = document.querySelector("#current-time");
 
-
-function getRow(){
-for(let i =0; i<gameState.board.length;i++){
-  let rowEl= gameState.board[i]
-  for(j=0;j<rowEl.length;i++){
-    let colEl=rowEl[j]
-
+function CheckWin() {
+  // Check rows for a win
+  for (let i = 0; i < 3; i++) {
+    if (
+      gameState.board[i][0] !== null &&
+      gameState.board[i][0] === gameState.board[i][1] &&
+      gameState.board[i][1] === gameState.board[i][2]
+    ) {
+      gameStatus.innerText = `${
+        gameState.playerNames[gameState.currentPlayeridx]
+      } + "'s wins"`;
+    }
   }
-}
-}
-function getCol(){
 
+  // Check columns for a win
+  for (let i = 0; i < 3; i++) {
+    if (
+      gameState.board[0][i] !== null &&
+      gameState.board[0][i] === gameState.board[1][i] &&
+      gameState.board[1][i] === gameState.board[2][i]
+    ) {
+      gameStatus.innerText = `${
+        gameState.playerNames[gameState.currentPlayeridx]
+      }+'s wins`;
+    }
+  }
+
+  // Check diagonals for a win
+  if (
+    gameState.board[0][0] !== null &&
+    gameState.board[0][0] === gameState.board[1][1] &&
+    gameState.board[1][1] === gameState.board[2][2]
+  ) {
+    gameStatus.innerText = `${
+      gameState.playerNames[gameState.currentPlayeridx]
+    }'s wins`;
+  }
+  if (
+    gameState.board[0][2] !== null &&
+    gameState.board[0][2] === gameState.board[1][1] &&
+    gameState.board[1][1] === gameState.board[2][0]
+  ) {
+    gameStatus.innerText = `${
+      gameState.playerNames[gameState.currentPlayeridx]
+    }'s wins`;
+  } else {
+    gameStatus = "its a tie??? or maybe not over";
+  }
+
+  // If no winning combinations are found, return tie
 }
-function checkWin(){
 
 // }
 // const board = document.querySelector(".board");
@@ -138,3 +179,4 @@ function checkWin(){
 //got to get game status to display who won at the end of the game
 //check win function
 //scoreboard function tally wins
+// reset button
