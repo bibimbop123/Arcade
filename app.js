@@ -9,7 +9,6 @@ const gameState = {
     [null, null, null],
     [null, null, null],
   ],
-  currentPlayer: () => this.players[this.currentPlayeridx],
   players: [
     {
       name: 'player1',
@@ -25,6 +24,9 @@ const gameState = {
     },
   ],
   currentPlayeridx: 0,
+  currentPlayer() {
+    return this.players[this.currentPlayeridx];
+  }
 };
 const form1 = document.querySelector("#player1form");
 const playerStatus = document.querySelector("#playerStatus");
@@ -70,7 +72,7 @@ function renderboard() {
 }
 function switchPlayer() {
   gameState.currentPlayeridx =
-    (gameState.currentPlayeridx + 1) % gameState.playerNames.length;
+    (gameState.currentPlayeridx + 1) % gameState.players.length;
 }
 function displayCurrentTime() {
   currentTimeDisplay.innerText = new Date();
@@ -146,6 +148,7 @@ function resetGame() {
     [null, null, null],
     [null, null, null],
   ];
+  renderboard();
 }
 // const board = document.querySelector(".board");
 // for (let i = 0; i < 3; i++) {
