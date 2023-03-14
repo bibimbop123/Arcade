@@ -79,7 +79,7 @@ function CheckWin() {
     ) {
       gameStatus.innerText = `${
         gameState.playerNames[gameState.currentPlayeridx]
-      } + "'s wins"`;
+      } 's wins"`;
     }
   }
 
@@ -92,7 +92,8 @@ function CheckWin() {
     ) {
       gameStatus.innerText = `${
         gameState.playerNames[gameState.currentPlayeridx]
-      }+'s wins`;
+      }'s wins`;
+      resetGame();
     }
   }
 
@@ -105,7 +106,9 @@ function CheckWin() {
     gameStatus.innerText = `${
       gameState.playerNames[gameState.currentPlayeridx]
     }'s wins`;
+    resetGame();
   }
+
   if (
     gameState.board[0][2] !== null &&
     gameState.board[0][2] === gameState.board[1][1] &&
@@ -114,6 +117,7 @@ function CheckWin() {
     gameStatus.innerText = `${
       gameState.playerNames[gameState.currentPlayeridx]
     }'s wins`;
+    resetGame();
   } else {
     gameStatus = "its a tie??? or maybe not over";
   }
@@ -121,7 +125,18 @@ function CheckWin() {
   // If no winning combinations are found, return tie
 }
 
-// }
+reset.addEventListener("click", (event) => {
+  event.preventDefault();
+  resetGame();
+});
+
+function resetGame() {
+  gameState.board = [
+    [null, null, null],
+    [null, null, null],
+    [null, null, null],
+  ];
+}
 // const board = document.querySelector(".board");
 // for (let i = 0; i < 3; i++) {
 //   for (let j = 0; j < 3; j++) {

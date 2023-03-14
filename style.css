@@ -76,3 +76,9 @@ body {
   display: flex;
   justify-content: center;
 }
+#reset {
+  padding: 6px;
+}
+#submit {
+  padding: 3px;
+}
