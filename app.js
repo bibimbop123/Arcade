@@ -12,6 +12,7 @@ const gameState = {
   currentPlayer: "x",
   playerNames: ["Player 1", "Player 2"],
   currentPlayeridx: 0,
+  wins: { "Player 1": 0, "Player 2": 0 },
 };
 const form1 = document.querySelector("#player1form");
 const playerStatus = document.querySelector("#playerStatus");
@@ -24,8 +25,6 @@ for (let i = 0; i < 3; i++) {
     board.append(cell);
   }
 }
-player1score.innerText = `${gameState.playerNames[0]}'s score: 0`;
-player2score.innerText = `${gameState.playerNames[1]}'s score: 0`;
 
 board.addEventListener("click", (e) => {
   console.log(e.target.id);
@@ -48,6 +47,8 @@ form1.addEventListener("submit", (event) => {
   event.preventDefault();
   gameState.playerNames[0] = event.target[0].value;
   gameState.playerNames[1] = event.target[1].value;
+  player1score.innerText = `${gameState.playerNames[0]}'s score: 0`;
+  player2score.innerText = `${gameState.playerNames[1]}'s score: 0`;
 });
 
 function renderboard() {
@@ -74,6 +75,7 @@ setInterval(displayCurrentTime, 1000);
 const currentTimeDisplay = document.querySelector("#current-time");
 
 function CheckWin() {
+  let hasWon = false;
   // Check rows for a win
   for (let i = 0; i < 3; i++) {
     if (
@@ -81,9 +83,7 @@ function CheckWin() {
       gameState.board[i][0] === gameState.board[i][1] &&
       gameState.board[i][1] === gameState.board[i][2]
     ) {
-      gameStatus.innerText = `${
-        gameState.playerNames[gameState.currentPlayeridx]
-      } 's wins"`;
+      hasWon = true;
     }
   }
 
@@ -94,10 +94,7 @@ function CheckWin() {
       gameState.board[0][i] === gameState.board[1][i] &&
       gameState.board[1][i] === gameState.board[2][i]
     ) {
-      gameStatus.innerText = `${
-        gameState.playerNames[gameState.currentPlayeridx]
-      }'s wins`;
-      resetGame();
+      hasWon = true;
     }
   }
 
@@ -107,10 +104,7 @@ function CheckWin() {
     gameState.board[0][0] === gameState.board[1][1] &&
     gameState.board[1][1] === gameState.board[2][2]
   ) {
-    gameStatus.innerText = `${
-      gameState.playerNames[gameState.currentPlayeridx]
-    }'s wins`;
-    resetGame();
+    hasWon = true;
   }
 
   if (
@@ -118,14 +112,24 @@ function CheckWin() {
     gameState.board[0][2] === gameState.board[1][1] &&
     gameState.board[1][1] === gameState.board[2][0]
   ) {
-    gameStatus.innerText = `${
-      gameState.playerNames[gameState.currentPlayeridx]
-    }'s wins`;
-    resetGame();
+    hasWon = true;
   } else {
-    gameStatus = "its a tie??? or maybe not over";
+    gameStatus.innerText = "its a tie??? or maybe not over";
   }
 
+  if (hasWon) {
+    let playerName = gameState.playerNames[gameState.currentPlayeridx];
+    gameStatus.innerText = `${playerName}'s wins`;
+    let winCount = gameState.wins[playerName];
+    gameState.wins[playerName] = winCount ? winCount++ : 1;
+    player1score.innerText = `${gameState.playerNames[0]} score is ${
+      gameState.wins[gameState.playerNames[0]]
+    }`;
+    player2score.innerText = `${gameState.playerNames[1]} score is ${
+      gameState.wins[gameState.playerNames[1]]
+    }`;
+    resetGame();
+  }
   // If no winning combinations are found, return tie
 }
 
