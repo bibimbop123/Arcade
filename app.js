@@ -1,6 +1,8 @@
 const board = document.querySelector(".board");
 const player1 = document.querySelector("#player1-name");
 const player2 = document.querySelector("#player2-name");
+const player1score = document.querySelector("#player1score");
+const player2score = document.querySelector("#player2score");
 const gameState = {
   board: [
     [null, null, null],
@@ -22,6 +24,8 @@ for (let i = 0; i < 3; i++) {
     board.append(cell);
   }
 }
+player1score.innerText = `${gameState.playerNames[0]}'s score: 0`;
+player2score.innerText = `${gameState.playerNames[1]}'s score: 0`;
 
 board.addEventListener("click", (e) => {
   console.log(e.target.id);
