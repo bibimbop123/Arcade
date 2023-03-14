@@ -9,10 +9,22 @@ const gameState = {
     [null, null, null],
     [null, null, null],
   ],
-  currentPlayer: "x",
-  playerNames: ["Player 1", "Player 2"],
+  currentPlayer: () => this.players[this.currentPlayeridx],
+  players: [
+    {
+      name: 'player1',
+      displayName: 'Player 1',
+      wins: 0,
+      gameSymbol: 'x'
+    },
+    {
+      name: 'player1',
+      displayName: 'Player 1',
+      wins: 0,
+      gameSymbol: 'o'
+    },
+  ],
   currentPlayeridx: 0,
-  wins: { "Player 1": 0, "Player 2": 0 },
 };
 const form1 = document.querySelector("#player1form");
 const playerStatus = document.querySelector("#playerStatus");
@@ -30,25 +42,22 @@ board.addEventListener("click", (e) => {
   console.log(e.target.id);
   const row = e.target.id[0];
   const col = e.target.id[2];
-  gameState.board[row][col] = gameState.currentPlayer;
+  gameState.board[row][col] = gameState.currentPlayer().gameSymbol;
   console.log("Game State: ", gameState);
 
   renderboard();
   switchPlayer();
-  playerStatus.innerText =
-    gameState.currentPlayer === "x"
-      ? gameState.playerNames[0] + "'s turn"
-      : gameState.playerNames[1] + "'s turn";
+  playerStatus.innerText = `${gameState.currentPlayer().displayName}'s turn'`
   gameStatus.innerText = "Active";
   CheckWin();
 });
 
 form1.addEventListener("submit", (event) => {
   event.preventDefault();
-  gameState.playerNames[0] = event.target[0].value;
-  gameState.playerNames[1] = event.target[1].value;
-  player1score.innerText = `${gameState.playerNames[0]}'s score: 0`;
-  player2score.innerText = `${gameState.playerNames[1]}'s score: 0`;
+  gameState.players[0].displayName = event.target[0].value;
+  gameState.players[1].displayName = event.target[1].value;
+  player1score.innerText = `${gameState.players[0].displayName}'s score: 0`;
+  player2score.innerText = `${gameState.players[1].displayName}'s score: 0`;
 });
 
 function renderboard() {
@@ -60,11 +69,6 @@ function renderboard() {
   }
 }
 function switchPlayer() {
-  if (gameState.currentPlayer === "x") {
-    gameState.currentPlayer = "o";
-  } else if (gameState.currentPlayer === "o") {
-    gameState.currentPlayer = "x";
-  }
   gameState.currentPlayeridx =
     (gameState.currentPlayeridx + 1) % gameState.playerNames.length;
 }
@@ -118,15 +122,13 @@ function CheckWin() {
   }
 
   if (hasWon) {
-    let playerName = gameState.playerNames[gameState.currentPlayeridx];
-    gameStatus.innerText = `${playerName}'s wins`;
-    let winCount = gameState.wins[playerName];
-    gameState.wins[playerName] = winCount ? winCount++ : 1;
-    player1score.innerText = `${gameState.playerNames[0]} score is ${
-      gameState.wins[gameState.playerNames[0]]
+    gameStatus.innerText = `${gameState.currentPlayer().displayName}'s wins`;
+    gameState.currentPlayer().wins++;
+    player1score.innerText = `${gameState.players[0].displayName} score is ${
+      gameState.players[0].wins
     }`;
-    player2score.innerText = `${gameState.playerNames[1]} score is ${
-      gameState.wins[gameState.playerNames[1]]
+    player2score.innerText = `${gameState.players[1].displayName} score is ${
+      gameState.players[1].wins
     }`;
     resetGame();
   }
