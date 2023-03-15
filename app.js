@@ -12,35 +12,41 @@ const gameState = {
   currentPlayer: "x",
   playerNames: ["Player 1", "Player 2"],
   currentPlayeridx: 0,
-  wins: { "Player 1": 0, "Player 2": 0 },
+  wins: { 0: 0, 1: 0 },
 };
 const form1 = document.querySelector("#player1form");
 const playerStatus = document.querySelector("#playerStatus");
 const gameStatus = document.querySelector("#gameStatus");
-for (let i = 0; i < 3; i++) {
-  for (let j = 0; j < 3; j++) {
-    const cell = document.createElement("div");
-    cell.classList.add("cell");
-    cell.id = `${i}-${j}`;
-    board.append(cell);
+
+function renderGame() {
+  board.innerHTML = "";
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      const cell = document.createElement("div");
+      cell.classList.add("cell");
+      cell.id = `${i}-${j}`;
+      board.append(cell);
+    }
   }
 }
-
+renderGame();
 board.addEventListener("click", (e) => {
   console.log(e.target.id);
   const row = e.target.id[0];
   const col = e.target.id[2];
   gameState.board[row][col] = gameState.currentPlayer;
   console.log("Game State: ", gameState);
+  gameStatus.innerText = "Active";
 
   renderboard();
+
+  CheckWin();
+  displayScore();
   switchPlayer();
   playerStatus.innerText =
     gameState.currentPlayer === "x"
       ? gameState.playerNames[0] + "'s turn"
       : gameState.playerNames[1] + "'s turn";
-  gameStatus.innerText = "Active";
-  CheckWin();
 });
 
 form1.addEventListener("submit", (event) => {
@@ -114,27 +120,24 @@ function CheckWin() {
   ) {
     hasWon = true;
   } else {
-    gameStatus.innerText = "its a tie??? or maybe not over";
+    gameStatus.innerText = "it's a tie! or not over";
   }
-
   if (hasWon) {
     let playerName = gameState.playerNames[gameState.currentPlayeridx];
     gameStatus.innerText = `${playerName}'s wins`;
-    let winCount = gameState.wins[playerName];
-    gameState.wins[playerName] = winCount ? winCount++ : 1;
-    player1score.innerText = `${gameState.playerNames[0]} score is ${
-      gameState.wins[gameState.playerNames[0]]
-    }`;
-    player2score.innerText = `${gameState.playerNames[1]} score is ${
-      gameState.wins[gameState.playerNames[1]]
-    }`;
+    gameState.wins[gameState.currentPlayeridx]++;
+
     resetGame();
   }
   // If no winning combinations are found, return tie
 }
 
+function displayScore() {
+  player1score.innerText = `${gameState.playerNames[0]} score is ${gameState.wins[0]}`;
+  player2score.innerText = `${gameState.playerNames[1]} score is ${gameState.wins[1]}`;
+}
+
 reset.addEventListener("click", (event) => {
-  event.preventDefault();
   resetGame();
 });
 
@@ -144,6 +147,7 @@ function resetGame() {
     [null, null, null],
     [null, null, null],
   ];
+  renderGame();
 }
 // const board = document.querySelector(".board");
 // for (let i = 0; i < 3; i++) {
