@@ -135,8 +135,8 @@ function CheckWin() {
 }
 
 function displayScore() {
-  player1score.innerText = `${gameState.playerNames[0]} score is ${gameState.wins[0]}`;
-  player2score.innerText = `${gameState.playerNames[1]} score is ${gameState.wins[1]}`;
+  player1score.innerText = `${gameState.playerNames[0]}'s score is ${gameState.wins[0]}`;
+  player2score.innerText = `${gameState.playerNames[1]}'s score is ${gameState.wins[1]}`;
 }
 
 reset.addEventListener("click", (event) => {
