@@ -79,6 +79,9 @@ body {
 #reset {
   padding: 6px;
 }
+#resetScoreboard {
+  padding: 6px;
+}
 #submit {
   padding: 3px;
 }

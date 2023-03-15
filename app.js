@@ -26,6 +26,7 @@ function renderGame() {
       cell.classList.add("cell");
       cell.id = `${i}-${j}`;
       board.append(cell);
+      board.append(cell);
     }
   }
 }
@@ -55,6 +56,7 @@ form1.addEventListener("submit", (event) => {
   gameState.playerNames[1] = event.target[1].value;
   player1score.innerText = `${gameState.playerNames[0]}'s score: 0`;
   player2score.innerText = `${gameState.playerNames[1]}'s score: 0`;
+  playerStatus.innerText = gameState.playerNames[0] + "'s turn";
 });
 
 function renderboard() {
@@ -149,6 +151,14 @@ function resetGame() {
   ];
   renderGame();
 }
+
+resetScoreboard.addEventListener("click", (event) => {
+  player1score.innerText = `${gameState.playerNames[0]}'s score: 0`;
+  player2score.innerText = `${gameState.playerNames[1]}'s score: 0`;
+  gameState.wins[0] = 0;
+  gameState.wins[1] = 0;
+});
+
 // const board = document.querySelector(".board");
 // for (let i = 0; i < 3; i++) {
 //   for (let j = 0; j < 3; j++) {
