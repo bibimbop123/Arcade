@@ -162,4 +162,25 @@ computer.addEventListener("click", (event) => [
   alert(
     "Please enter Player 1 Name, Leave Player 2 Name blank, And  Press Submit"
   ),
+  playComputer(),
 ]);
+function playComputer() {
+  let emptyPositionFound = false;
+  while (!emptyPositionFound) {
+    const row = Math.floor(Math.random() * 3);
+    const col = Math.floor(Math.random() * 3);
+    if ((gameState.board = null)) {
+      emptyPositionFound = true;
+      gameState.board[row][col] = gameState.playerNames[1];
+    }
+  }
+  // let emptyPositionFound = false;
+  // while (!emptyPositionFound) {
+  //   const rowIdx = Math.floor(Math.random() * 3);
+  //   const colIdx = Math.floor(Math.random() * 3);
+  //   // check if that position in the board is empty
+  //   //if it is, reset emptyPositionFound = true
+  //   // then play the computer move
+  // }
+  // switchPlayer();
+}
