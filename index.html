@@ -11,8 +11,9 @@
   <body>
     <p id="current-time"></p>
     <h1>The Original Tic-Tac-Toe!</h1>
-    <hr />
+    <br />
     <h3>Please enter Player names!</h2>
+    <br/>
     <form id="player1form">
       <label for="player1-name">Enter Player 1 Name</label>
       <input type="text" id="player1-name" name="player1-name" />
@@ -20,6 +21,8 @@
       <input type="text" id="player2-name" name="player2-name" />
       <button id="submit" type="submit">Submit</button>
     </form>
+    <br/>
+    <button id="computer"> Play Computer</button>
     <div id="playerStatus">Player 1</div>
     <div id="gameStatus">Inactive</div>
     <hr size="2px" />
@@ -35,11 +38,15 @@
       <div class="cell"></div>
       <div class="cell"></div> -->
     </div>
+    <br>
     <button id="reset">Reset Game</button>
+    <br/>
     <button id="resetScoreboard">Reset Scoreboard</button>
+    <br>
     <div id="scoreboard">
-      <div id="player1score">player 1 score</div>
-      <div id="player2score">player 2 score</div>
+      <br>
+      <h2 id="player1score">player 1 score</h2>
+      <h2 id="player2score">player 2 score</h2>
     </div>
   </body>
 </html>

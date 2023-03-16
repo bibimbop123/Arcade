@@ -78,10 +78,14 @@ body {
 }
 #reset {
   padding: 6px;
+  display: inline-block;
 }
 #resetScoreboard {
   padding: 6px;
 }
 #submit {
+  padding: 3px;
+}
+#computer {
   padding: 3px;
 }

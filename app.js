@@ -158,7 +158,9 @@ resetScoreboard.addEventListener("click", (event) => {
   gameState.wins[0] = 0;
   gameState.wins[1] = 0;
 });
-
+computer.addEventListener("click", (event) => {
+  alert("Enter Player 1 Name");
+});
 // const board = document.querySelector(".board");
 // for (let i = 0; i < 3; i++) {
 //   for (let j = 0; j < 3; j++) {
