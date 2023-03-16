@@ -12,8 +12,25 @@
     <p id="current-time"></p>
     <h1>The Original Tic-Tac-Toe!</h1>
     <br />
+    <h4>Rules of the Game</h4>
+    <ol>
+      <li> The game is played on a grid that's 3 squares by 3 squares</li>
+      <li> Players take turns putting their marks (X or O) in empty squares</li>
+      <li> The first player to get 3 of their marks in a row (up, down, across, or diagonal) is the winner!</li>
+      <li> When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.</li>
+    </ol>
+    <br>
+    <h4>TO MAKE THE GAME MORE CHALLENGING</h4>
+    <div class="image-container">
+      <img id="drinking" src="drinkingTicTacToe.jpg" alt="Have the winning player take a shot of tequila after every win">
+    <div>Have the winning player take a shot of tequila after every win</div>  
+    <img id="push-ups" src="Pushups.jpeg" alt="Have the losing player do 10 pushups after every loss">
+    <div>Have the losing player do 10 pushups after every loss</div>
+    </div>
+    <div>if TIE, both players do both!</div>
+    <br>
     <h3>Please enter Player names!</h2>
-    <br/>
+    <br>
     <form id="player1form">
       <label for="player1-name">Enter Player 1 Name</label>
       <input type="text" id="player1-name" name="player1-name" />
@@ -25,7 +42,6 @@
     <button id="computer"> Play Computer</button>
     <div id="playerStatus">Player 1</div>
     <div id="gameStatus">Inactive</div>
-    <hr size="2px" />
 
     <div class="board">
       <!-- <div class="cell" id="0,0"></div>
@@ -38,6 +54,7 @@
       <div class="cell"></div>
       <div class="cell"></div> -->
     </div>
+  
     <br>
     <button id="reset">Reset Game</button>
     <br/>

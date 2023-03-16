@@ -89,3 +89,21 @@ body {
 #computer {
   padding: 3px;
 }
+#drinking {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+#push-ups {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.image-container {
+  display: flex;
+  flex-direction: column;
+}
