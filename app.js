@@ -44,6 +44,7 @@ board.addEventListener("click", (e) => {
 
   CheckWin();
   displayScore();
+  playComputer();
   switchPlayer();
   playerStatus.innerText =
     gameState.currentPlayer === "x"
@@ -159,20 +160,22 @@ resetScoreboard.addEventListener("click", (event) => {
   gameState.wins[0] = 0;
   gameState.wins[1] = 0;
 });
-computer.addEventListener("click", (event) => [
+computer.addEventListener("click", (event) => {
   alert(
     "Please enter Player 1 Name, Leave Player 2 Name blank, And  Press Submit"
-  ),
-  playComputer(),
-]);
+  );
+  gameState.playerNames[1] = "computer";
+});
 function playComputer() {
   let emptyPositionFound = false;
   while (!emptyPositionFound) {
     const row = Math.floor(Math.random() * 3);
     const col = Math.floor(Math.random() * 3);
-    if ((gameState.board = null)) {
+    if (gameState.board[row][col] === null) {
       emptyPositionFound = true;
-      gameState.board[row][col] = gameState.playerNames[1];
+      gameState.currentPlayeridx =
+        (gameState.currentPlayeridx + 1) % gameState.playerNames.length;
+      gameState.board[row][col] = gameState.currentPlayer;
     }
   }
 
