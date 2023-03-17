@@ -3,6 +3,7 @@ const player1 = document.querySelector("#player1-name");
 const player2 = document.querySelector("#player2-name");
 const player1score = document.querySelector("#player1score");
 const player2score = document.querySelector("#player2score");
+const computerScore = document.querySelector("#computerScore");
 const gameState = {
   board: [
     [null, null, null],
@@ -10,9 +11,9 @@ const gameState = {
     [null, null, null],
   ],
   currentPlayer: "x",
-  playerNames: ["Player 1", "Player 2"],
+  playerNames: ["Player 1", "Player 2", "Computer"],
   currentPlayeridx: 0,
-  wins: { 0: 0, 1: 0 },
+  wins: { 0: 0, 1: 0, 2: 0 },
   computer: false,
 };
 const form1 = document.querySelector("#player1form");
@@ -139,12 +140,17 @@ function CheckWin() {
   } else {
     gameStatus.innerText = "it's a tie! or not over";
   }
-  if (hasWon) {
+  if (hasWon && !gameState.computer) {
     let playerName = gameState.playerNames[gameState.currentPlayeridx];
     gameStatus.innerText = `${playerName}'s wins`;
     gameState.wins[gameState.currentPlayeridx]++;
 
     resetGame();
+  }
+  if (hasWon && gameState.computer) {
+    let playerName = gameState.playerNames[gameState.currentPlayeridx];
+    gameStatus.innerText = `${playerName}'s wins`;
+    gameState.wins[gameState.currentPlayeridx]++;
   }
   // If no winning combinations are found, return tie
 }
@@ -152,10 +158,9 @@ function CheckWin() {
 function displayScore() {
   player1score.innerText = `${gameState.playerNames[0]}'s score is ${gameState.wins[0]}`;
   player2score.innerText = `${gameState.playerNames[1]}'s score is ${gameState.wins[1]}`;
-
   if (gameState.computer) {
     player1score.innerText = `${gameState.playerNames[0]}'s score is ${gameState.wins[0]}`;
-    player2score.innerText = `computer's score is ${gameState.wins[1]}`;
+    computerScore.innerText = `computer's score is ${gameState.computerScore}`;
   }
 }
 
@@ -175,6 +180,7 @@ function resetGame() {
 resetScoreboard.addEventListener("click", (event) => {
   player1score.innerText = `${gameState.playerNames[0]}'s score: 0`;
   player2score.innerText = `${gameState.playerNames[1]}'s score: 0`;
+  computerScore.innerText = `computer's score: 0`;
   gameState.wins[0] = 0;
   gameState.wins[1] = 0;
 });
@@ -193,6 +199,11 @@ function playComputer() {
       emptyPositionFound = true;
 
       gameState.board[row][col] = gameState.currentPlayer;
+      if (gameState.currentPlayer === "x") {
+        gameState.currentPlayer = "o";
+      } else if (gameState.currentPlayer === "o") {
+        gameState.currentPlayer = "x";
+      }
     }
   }
 }
