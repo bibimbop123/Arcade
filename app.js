@@ -14,7 +14,6 @@ const gameState = {
   currentPlayeridx: 0,
   wins: { 0: 0, 1: 0 },
   computer: false,
-  computerPlayer: "o",
 };
 const form1 = document.querySelector("#player1form");
 const playerStatus = document.querySelector("#playerStatus");
@@ -35,13 +34,20 @@ function renderGame() {
 renderGame();
 
 board.addEventListener("click", (e) => {
-  console.log(e.target.id);
   const row = e.target.id[0];
   const col = e.target.id[2];
-  gameState.board[row][col] = gameState.currentPlayer;
-  if (gameState.computer === "true") {
-    playComputer();
+  if (gameState.board[row][col]) {
+    alert("space already taken");
   } else {
+    console.log(e.target.id);
+    if (gameState.computer === "true") {
+      gameState.board[row][col] = gameState.currentPlayer;
+
+      playComputer();
+    }
+    if (gameState.computer !== true) {
+      gameState.board[row][col] = gameState.currentPlayer;
+    }
     console.log("Game State: ", gameState);
     gameStatus.innerText = "Active";
 
@@ -51,11 +57,12 @@ board.addEventListener("click", (e) => {
     displayScore();
 
     switchPlayer();
+
+    playerStatus.innerText =
+      gameState.currentPlayer === "x"
+        ? gameState.playerNames[0] + "'s turn"
+        : gameState.playerNames[1] + "'s turn";
   }
-  playerStatus.innerText =
-    gameState.currentPlayer === "x"
-      ? gameState.playerNames[0] + "'s turn"
-      : gameState.playerNames[1] + "'s turn";
 });
 
 form1.addEventListener("submit", (event) => {
@@ -145,6 +152,11 @@ function CheckWin() {
 function displayScore() {
   player1score.innerText = `${gameState.playerNames[0]}'s score is ${gameState.wins[0]}`;
   player2score.innerText = `${gameState.playerNames[1]}'s score is ${gameState.wins[1]}`;
+
+  if (gameState.computer) {
+    player1score.innerText = `${gameState.playerNames[0]}'s score is ${gameState.wins[0]}`;
+    player2score.innerText = `computer's score is ${gameState.wins[1]}`;
+  }
 }
 
 reset.addEventListener("click", (event) => {
@@ -179,23 +191,8 @@ function playComputer() {
     const col = Math.floor(Math.random() * 3);
     if (gameState.board[row][col] === null) {
       emptyPositionFound = true;
-      gameState.board[row][col] = gameState.computerPlayer;
-    }
-    if (gameState.currentPlayer === "x") {
-      gameState.currentPlayer = "o";
-    }
-    if (gameState.currentPlayer === "o") {
-      gameState.currentPlayer = "x";
+
+      gameState.board[row][col] = gameState.currentPlayer;
     }
   }
-  renderboard();
-  // let emptyPositionFound = false;
-  // while (!emptyPositionFound) {
-  //   const rowIdx = Math.floor(Math.random() * 3);
-  //   const colIdx = Math.floor(Math.random() * 3);
-  //   // check if that position in the board is empty
-  //   //if it is, reset emptyPositionFound = true
-  //   // then play the computer move
-  // }
-  // switchPlayer();
 }
