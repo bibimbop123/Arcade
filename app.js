@@ -37,7 +37,7 @@ board.addEventListener("click", (e) => {
   console.log(e.target.id);
   const row = e.target.id[0];
   const col = e.target.id[2];
-  gameState.board[row][col] = gameState.currentPlayer;
+  gameState.board[row][col] = "x";
   if (gameState.computer === "true") {
     playComputer();
   }
@@ -178,8 +178,6 @@ function playComputer() {
     const col = Math.floor(Math.random() * 3);
     if (gameState.board[row][col] === null) {
       emptyPositionFound = true;
-      gameState.currentPlayeridx =
-        (gameState.currentPlayeridx + 1) % gameState.playerNames.length;
       gameState.board[row][col] = gameState.currentPlayer;
     }
   }
