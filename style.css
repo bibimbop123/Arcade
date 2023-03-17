@@ -92,18 +92,19 @@ body {
 #drinking {
   width: 100px;
   height: 100px;
-  text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
 #push-ups {
   width: 100px;
   height: 100px;
-  text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
 .image-container {
   display: flex;
   flex-direction: column;
+  border: 2px solid black;
+  text-align: center;
+  padding: 10px;
 }
