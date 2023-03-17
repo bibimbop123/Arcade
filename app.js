@@ -14,6 +14,7 @@ const gameState = {
   currentPlayeridx: 0,
   wins: { 0: 0, 1: 0 },
   computer: false,
+  computerPlayer: "o",
 };
 const form1 = document.querySelector("#player1form");
 const playerStatus = document.querySelector("#playerStatus");
@@ -37,20 +38,20 @@ board.addEventListener("click", (e) => {
   console.log(e.target.id);
   const row = e.target.id[0];
   const col = e.target.id[2];
-  gameState.board[row][col] = "x";
+  gameState.board[row][col] = gameState.currentPlayer;
   if (gameState.computer === "true") {
     playComputer();
+  } else {
+    console.log("Game State: ", gameState);
+    gameStatus.innerText = "Active";
+
+    renderboard();
+
+    CheckWin();
+    displayScore();
+
+    switchPlayer();
   }
-  console.log("Game State: ", gameState);
-  gameStatus.innerText = "Active";
-
-  renderboard();
-
-  CheckWin();
-  displayScore();
-
-  switchPlayer();
-
   playerStatus.innerText =
     gameState.currentPlayer === "x"
       ? gameState.playerNames[0] + "'s turn"
@@ -178,11 +179,16 @@ function playComputer() {
     const col = Math.floor(Math.random() * 3);
     if (gameState.board[row][col] === null) {
       emptyPositionFound = true;
-      gameState.board[row][col] = gameState.currentPlayer;
+      gameState.board[row][col] = gameState.computerPlayer;
+    }
+    if (gameState.currentPlayer === "x") {
+      gameState.currentPlayer = "o";
+    }
+    if (gameState.currentPlayer === "o") {
+      gameState.currentPlayer = "x";
     }
   }
   renderboard();
-  switchPlayer();
   // let emptyPositionFound = false;
   // while (!emptyPositionFound) {
   //   const rowIdx = Math.floor(Math.random() * 3);
