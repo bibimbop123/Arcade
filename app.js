@@ -31,6 +31,7 @@ function renderGame() {
   }
 }
 renderGame();
+
 board.addEventListener("click", (e) => {
   console.log(e.target.id);
   const row = e.target.id[0];
@@ -174,6 +175,7 @@ function playComputer() {
       gameState.board[row][col] = gameState.playerNames[1];
     }
   }
+
   // let emptyPositionFound = false;
   // while (!emptyPositionFound) {
   //   const rowIdx = Math.floor(Math.random() * 3);
