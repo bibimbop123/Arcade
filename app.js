@@ -37,6 +37,9 @@ board.addEventListener("click", (e) => {
   const row = e.target.id[0];
   const col = e.target.id[2];
   gameState.board[row][col] = gameState.currentPlayer;
+  if (gameState.playerNames[1] === "computer") {
+    playComputer();
+  }
   console.log("Game State: ", gameState);
   gameStatus.innerText = "Active";
 
@@ -44,12 +47,9 @@ board.addEventListener("click", (e) => {
 
   CheckWin();
   displayScore();
-  if (gameState.playerNames[1] === "computer") {
-    playComputer();
-  }
-  if (gameState.playerNames[1] != "computer") {
-    switchPlayer();
-  }
+
+  switchPlayer();
+
   playerStatus.innerText =
     gameState.currentPlayer === "x"
       ? gameState.playerNames[0] + "'s turn"
@@ -178,7 +178,7 @@ function playComputer() {
     if (gameState.board[row][col] === null) {
       emptyPositionFound = true;
       gameState.currentPlayeridx =
-        gameState.currentPlayeridx % gameState.playerNames.length;
+        (gameState.currentPlayeridx + 2) % gameState.playerNames.length;
       gameState.board[row][col] = gameState.currentPlayer;
     }
   }
