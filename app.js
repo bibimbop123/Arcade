@@ -180,7 +180,6 @@ function resetGame() {
 resetScoreboard.addEventListener("click", (event) => {
   player1score.innerText = `${gameState.playerNames[0]}'s score: 0`;
   player2score.innerText = `${gameState.playerNames[1]}'s score: 0`;
-  computerScore.innerText = `computer's score: 0`;
   gameState.wins[0] = 0;
   gameState.wins[1] = 0;
 });
