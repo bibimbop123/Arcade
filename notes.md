@@ -8,3 +8,7 @@ if player 2 is 'computer' then instead of the regular on click handler:
   - check if the randomly generated indexes are at an empty space
     - if the space is empty, play the space and switch turns
     - else you need to regenerate two more random coordinates and try again
+
+after you click on single player game, if player two is computer
+after first player makes moves check if name of player two is computer, run play computer function
+call render the board if the condition above is true

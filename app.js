@@ -44,8 +44,12 @@ board.addEventListener("click", (e) => {
 
   CheckWin();
   displayScore();
-  playComputer();
-  switchPlayer();
+  if (gameState.playerNames[1] === "computer") {
+    playComputer();
+  }
+  if (gameState.playerNames[1] != "computer") {
+    switchPlayer();
+  }
   playerStatus.innerText =
     gameState.currentPlayer === "x"
       ? gameState.playerNames[0] + "'s turn"
@@ -174,7 +178,7 @@ function playComputer() {
     if (gameState.board[row][col] === null) {
       emptyPositionFound = true;
       gameState.currentPlayeridx =
-        (gameState.currentPlayeridx + 1) % gameState.playerNames.length;
+        gameState.currentPlayeridx % gameState.playerNames.length;
       gameState.board[row][col] = gameState.currentPlayer;
     }
   }
