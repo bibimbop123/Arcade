@@ -48,17 +48,17 @@ board.addEventListener("click", (e) => {
     }
     if (gameState.computer !== true) {
       gameState.board[row][col] = gameState.currentPlayer;
+
+      console.log("Game State: ", gameState);
+      gameStatus.innerText = "Active";
+
+      renderboard();
+
+      CheckWin();
+      displayScore();
+
+      switchPlayer();
     }
-    console.log("Game State: ", gameState);
-    gameStatus.innerText = "Active";
-
-    renderboard();
-
-    CheckWin();
-    displayScore();
-
-    switchPlayer();
-
     playerStatus.innerText =
       gameState.currentPlayer === "x"
         ? gameState.playerNames[0] + "'s turn"
