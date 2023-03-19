@@ -183,12 +183,7 @@ resetScoreboard.addEventListener("click", (event) => {
   gameState.wins[0] = 0;
   gameState.wins[1] = 0;
 });
-computer.addEventListener("click", (event) => {
-  alert(
-    "Please enter Player 1 Name, Leave Player 2 Name blank, And  Press Submit"
-  );
-  gameState.computer = "true";
-});
+
 function playComputer() {
   let emptyPositionFound = false;
   while (!emptyPositionFound) {
@@ -206,3 +201,17 @@ function playComputer() {
     }
   }
 }
+const computer = document.querySelector("#computer");
+computer.addEventListener("click", (event) => {
+  alert(
+    "Please enter Player 1 Name, Leave Player 2 Name blank, And  Press Submit"
+  );
+  gameState.computer = "true";
+});
+const turncomputeroff = document.querySelector("#turncomputeroff");
+turncomputeroff.addEventListener("click", (event) => {
+  alert("single player mode turned off");
+  if ((gameState.computer = "true")) {
+    gameState.computer = "false";
+  }
+});
